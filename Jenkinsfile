@@ -4,13 +4,12 @@
 	stages {
         stage('Checkout') {
            steps { 
-				git url: 'https://github.com/habsh/microservice1.git', credentialsId: 'habsh', branch: 'master'
+				git url: 'https://github.com/rhmythili/CaseStudy', credentialsId: 'git', branch: 'main'
 		   }
         }
 
         stage('Build') {
 			steps {
-				bat 'cd ./account-service'
 				bat 'mvn clean install'
 				
 				
