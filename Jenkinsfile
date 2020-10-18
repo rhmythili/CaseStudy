@@ -1,19 +1,18 @@
-node {
-
-    withMaven(maven:'maven') {
-
+pipeline {
+    agent any
+    
+	stages {
         stage('Checkout') {
-            git url: 'https://github.com/rhmythili/CaseStudy', credentialsId: 'github', branch: 'main'
+           steps { 
+				git url: 'https://github.com/rhmythili/CaseStudy', credentialsId: 'git', branch: 'main'
+		   }
         }
+
         stage('Build') {
-            mvn clean install
-
-            def pom = readMavenPom file:'pom.xml'
-            print pom.version
-            env.version = pom.version
-        }
-             
-
-    }
-
+			steps {
+				bat 'mvn clean install'
+				
+				}
+			}       
+		}
 	}
