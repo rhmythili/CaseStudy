@@ -22,7 +22,7 @@ import com.example.poc.service.LoanDetailsService;
 
 @CrossOrigin
 @RestController
-@Api(value = "LoanDetailsController", description = "REST Apis related to Loan Entity!!!!")
+@Api(value = "LoanDetailsController")
 @ApiResponses(value = { @ApiResponse(code = 200, message = "Returns 200 if request successfully processed"),
 		@ApiResponse(code = 400, message = "Return 400 if mandatory request parameters are not passed"),
 		@ApiResponse(code = 401, message = "You are not authorized to view the Resource"),
@@ -43,7 +43,7 @@ public class LoanDetailsController {
 		logger.info("Returning all the loan details");
 		return loanDetailsService.getLoanDetails();
 	}
-	
+
 	@ApiOperation(value = "Save loan details in the database ", response = LoanDetails.class, tags = "postUsers")
 	@PostMapping(value = "/postUsers")
 	public void postUsers(@RequestBody List<LoanDetails> loanDetails) {

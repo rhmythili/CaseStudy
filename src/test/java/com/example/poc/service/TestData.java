@@ -12,11 +12,11 @@ public class TestData {
 		List<LoanDetailsDE> loanDetailsDEList = new ArrayList<LoanDetailsDE>();
 		LoanDetailsDE loanDetailsDE = new LoanDetailsDE();
 		loanDetailsDE.setBorrowerName("ABC");
-		loanDetailsDE.setDob("");
-		loanDetailsDE.setFloodRisk("");
-		loanDetailsDE.setLoanNumber(1);
-		loanDetailsDE.setPropertyAddress("");
-		loanDetailsDE.setPropertyValue(1l);
+		loanDetailsDE.setDob("09 July 1993");
+		loanDetailsDE.setFloodRisk("yes");
+		loanDetailsDE.setLoanNumber(100);
+		loanDetailsDE.setPropertyAddress("abc street");
+		loanDetailsDE.setPropertyValue(100000);
 		loanDetailsDEList.add(loanDetailsDE);
 		return loanDetailsDEList;
 	}

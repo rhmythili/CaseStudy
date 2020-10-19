@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.poc.entity.LoanDetailsDE;
 import com.example.poc.entity.util.LoanDetailsUtil;
-import com.example.poc.error.GlobalException;
+import com.example.poc.error.GlobalErrorHandler;
 import com.example.poc.model.LoanDetails;
 import com.example.poc.repository.LoanDetailsRepository;
 
 @Service
 public class LoanDetailsService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalException.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalErrorHandler.class);
 	
 	@Autowired
 	LoanDetailsRepository loanDetailsRepository;

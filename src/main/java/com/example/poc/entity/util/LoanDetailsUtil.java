@@ -12,9 +12,22 @@ import org.springframework.web.server.ResponseStatusException;
 import com.example.poc.entity.LoanDetailsDE;
 import com.example.poc.model.LoanDetails;
 
+/**
+ * @author Harsha
+ *
+ */
+
 public class LoanDetailsUtil {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+	
+	/**
+	 * non-public constructor
+	 *
+	 */
+	private LoanDetailsUtil() {
+		throw new IllegalStateException("Utility Class");
+	}
 	
 	public static LoanDetails mapEntityToModel(LoanDetailsDE loanDetailDE) {
 		logger.info("Mapping Entity Data to the Model");
@@ -43,6 +56,7 @@ public class LoanDetailsUtil {
 		return loanDetails;
 	}
 
+	
 	static void validateLoanDetail(LoanDetails loanDetail) {
 		
 		if(loanDetail.getLoanNumber()==0){
@@ -53,13 +67,13 @@ public class LoanDetailsUtil {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Borrower name can't be null for Loan Number -  " + loanDetail.getLoanNumber());
 		}
 		if (loanDetail.getDob() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Date of Birth can't be null for -"+loanDetail.getLoanNumber());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Date of Birth can't be null for Loan Number -"+loanDetail.getLoanNumber());
 		}
 		if (loanDetail.getPropertyAddress() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Property Address can't be null for -"+loanDetail.getLoanNumber());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Property Address can't be null for Loan Number -"+loanDetail.getLoanNumber());
 		}
 		if (loanDetail.getPropertyValue() == 0) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cost can't be zero for -"+loanDetail.getLoanNumber());
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cost can't be zero for Loan Number-"+loanDetail.getLoanNumber());
 		}
 		}
 
