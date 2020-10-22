@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 @Entity
 @Table(name = "LOAN_DETAILS", schema = "dbo")
 public class LoanDetailsDE implements Serializable {
@@ -23,6 +26,7 @@ public class LoanDetailsDE implements Serializable {
 	@Column(name = "borrower_name", nullable = false)
 	private String borrowerName;
 
+	@JsonFormat(pattern="yyyy-MM-dd",shape = Shape.STRING)
 	@Column(name = "date_of_birth", nullable = false)
 	private String dob;
 

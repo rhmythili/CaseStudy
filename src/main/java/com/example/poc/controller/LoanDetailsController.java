@@ -45,7 +45,7 @@ public class LoanDetailsController {
 	}
 
 	@ApiOperation(value = "Save loan details in the database ", response = LoanDetails.class, tags = "postUsers")
-	@PostMapping(value = "/postUsers")
+	@PostMapping(value = "/users")
 	public void postUsers(@RequestBody List<LoanDetails> loanDetails) {
 		logger.info("Save the loan details");
 		loanDetailsService.save(loanDetails);

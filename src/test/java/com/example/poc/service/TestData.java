@@ -12,7 +12,7 @@ public class TestData {
 		List<LoanDetailsDE> loanDetailsDEList = new ArrayList<LoanDetailsDE>();
 		LoanDetailsDE loanDetailsDE = new LoanDetailsDE();
 		loanDetailsDE.setBorrowerName("ABC");
-		loanDetailsDE.setDob("09 July 1993");
+		loanDetailsDE.setDob("09/07/1993");
 		loanDetailsDE.setFloodRisk("yes");
 		loanDetailsDE.setLoanNumber(100);
 		loanDetailsDE.setPropertyAddress("abc street");

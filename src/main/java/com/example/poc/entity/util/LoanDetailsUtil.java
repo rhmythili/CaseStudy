@@ -1,6 +1,8 @@
 package com.example.poc.entity.util;
 
 import java.lang.invoke.MethodHandles;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +20,9 @@ import com.example.poc.model.LoanDetails;
  */
 
 public class LoanDetailsUtil {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
-	
+
 	/**
 	 * non-public constructor
 	 *
@@ -28,7 +30,7 @@ public class LoanDetailsUtil {
 	private LoanDetailsUtil() {
 		throw new IllegalStateException("Utility Class");
 	}
-	
+
 	public static LoanDetails mapEntityToModel(LoanDetailsDE loanDetailDE) {
 		logger.info("Mapping Entity Data to the Model");
 		return new LoanDetails(loanDetailDE.getLoanNumber(), loanDetailDE.getBorrowerName(), loanDetailDE.getDob(),
@@ -56,25 +58,40 @@ public class LoanDetailsUtil {
 		return loanDetails;
 	}
 
-	
 	static void validateLoanDetail(LoanDetails loanDetail) {
-		
-		if(loanDetail.getLoanNumber()==0){
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Loan number can't be zero for -" + loanDetail.getBorrowerName());
-		}
-		else {
-		if (loanDetail.getBorrowerName() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Borrower name can't be null for Loan Number -  " + loanDetail.getLoanNumber());
-		}
-		if (loanDetail.getDob() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Date of Birth can't be null for Loan Number -"+loanDetail.getLoanNumber());
-		}
-		if (loanDetail.getPropertyAddress() == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Property Address can't be null for Loan Number -"+loanDetail.getLoanNumber());
-		}
-		if (loanDetail.getPropertyValue() == 0) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cost can't be zero for Loan Number-"+loanDetail.getLoanNumber());
-		}
+		DateFormat simpleDate = new SimpleDateFormat("MM/dd/yyyy");
+		simpleDate.setLenient(false);
+
+		if (loanDetail.getLoanNumber() == 0) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+					"Loan number can't be zero for -" + loanDetail.getBorrowerName());
+		} else {
+			if (loanDetail.getBorrowerName() == null) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Borrower name can't be null for Loan Number -  " + loanDetail.getLoanNumber());
+			}
+			if (loanDetail.getDob() == null) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Date of Birth can't be null for Loan Number -" + loanDetail.getLoanNumber());
+			}
+			if (loanDetail.getDob() != null) {
+				try {
+					simpleDate.parse(loanDetail.getDob());
+				} catch (java.text.ParseException e) {
+					throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+							"Date of Birth should be in MM/dd/yyyy format for Loan Number -"
+									+ loanDetail.getLoanNumber());
+				}
+			}
+
+			if (loanDetail.getPropertyAddress() == null) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Property Address can't be null for Loan Number -" + loanDetail.getLoanNumber());
+			}
+			if (loanDetail.getPropertyValue() == 0) {
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+						"Cost can't be zero for Loan Number-" + loanDetail.getLoanNumber());
+			}
 		}
 
 	}
